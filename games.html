@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #dropzone {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #000;
+            position: relative;
+        }
+
+        #draggable {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+            cursor: move;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var dragging = false;
+
+            $("#draggable").on("mousedown", function(){
+                dragging = true;
+            });
+
+            $(document).on("mouseup", function(){
+                dragging = false;
+            });
+
+            $(document).on("mousemove", function(event){
+                if(dragging){
+                    $("#draggable").offset({
+                        left: event.pageX - 25,
+                        top: event.pageY - 25
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="dropzone">
+    <div id="draggable"></div>
+</div>
+
+</body>
+</html>
